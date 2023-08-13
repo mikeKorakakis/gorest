@@ -119,6 +119,7 @@ func SetupRouter(configure *gconfig.Configuration) (*gin.Engine, error) {
 	{
 		// RDBMS
 		if configure.Database.RDBMS.Activate == gconfig.Activated {
+
 			// Register - no JWT required
 			v1.POST("register", gcontroller.CreateUserAuth)
 
@@ -272,7 +273,16 @@ func SetupRouter(configure *gconfig.Configuration) (*gin.Engine, error) {
 		// QueryString demo
 		rQuery := v1.Group("query")
 		rQuery.GET("*q", controller.QueryString)
+
 	}
+
+	// endpoints := []swagno.Endpoint{
+	// 	swagno.EndPoint(swagno.GET, "/api/v1/users", "users", nil, nil, []model.User{}, nil, "Get all Users", nil),
+	// }
+	// swagno.AddEndpoints(endpoints)
+	// sw := swagno.CreateNewSwagger("Swagger API", "1.0")
+	// // r.GET("/swagger/get", controller.APIStatus)
+	// r.GET("/swagger/get", swagger.SwaggerHandler(sw.GenerateDocs()))
 
 	return r, nil
 }

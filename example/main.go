@@ -7,7 +7,6 @@ import (
 	gconfig "github.com/pilinux/gorest/config"
 	gdatabase "github.com/pilinux/gorest/database"
 
-	"github.com/pilinux/gorest/example/database/migrate"
 	"github.com/pilinux/gorest/example/router"
 )
 
@@ -38,16 +37,16 @@ func main() {
 		*/
 
 		// Start DB migration
-		if err := migrate.StartMigration(*configure); err != nil {
-			fmt.Println(err)
-			return
-		}
+		// if err := migrate.StartMigration(*configure); err != nil {
+		// 	fmt.Println(err)
+		// 	return
+		// }
 
 		// Manually set foreign key for MySQL and PostgreSQL
-		if err := migrate.SetPkFk(); err != nil {
-			fmt.Println(err)
-			return
-		}
+		// if err := migrate.SetPkFk(); err != nil {
+		// 	fmt.Println(err)
+		// 	return
+		// }
 	}
 
 	if configure.Database.REDIS.Activate == gconfig.Activated {
